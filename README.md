@@ -1,5 +1,3 @@
-# Random-Damage
-Algorithm for calculating random damage figures in a given range. 
 ##YPC Random Damage
 
 
@@ -18,10 +16,8 @@ def random_damage_midBias(damageMin, damageMax):
     global damage
     lst = []
     count = 1
-    first = damageMax // 3
-    last = damageMax - first
-    mid = damageMax // 2
     entered = False
+
 
 
     while entered != True:
@@ -31,31 +27,32 @@ def random_damage_midBias(damageMin, damageMax):
             entered = True
         except:
             print ("please enter a valid interger")
-            
 
-    lowRange = damageMin
-    highRange = damageMax
-    damageValue = random.randint(lowRange, highRange)
+    first = damageMax // 3
+    last = damageMax - first
+    mid = damageMax // 2
+    print (first, last, mid)
 
-    
-    for i in range(damageMin, damageMax):
-        if i > first and i < last:
-            if i <= mid:
+
+    for i in range (damageMin, damageMax):
+        if i > first and i <= mid:
                 count +=1
-            elif i > mid:
+        if i < last and i > mid:
                 count -=1
-
-        if count == last or i > last or i <= first:
+        if i > last:
             count = 1
-                
-        for j in range(count):  
+            
+        for j in range(0, count):
             lst.append(i)
 
-            
+        
+    length = len(lst) 
+    damageValue = random.randint(1, length)        
     damage = lst[damageValue]
 
 
 random_damage_midBias(damageMin, damageMax)
 
 print (lst)
-print ("\n You Did:\t", damage)
+print ("\n You Did:\t", damage, "damage")
+
